@@ -23,7 +23,8 @@ class App extends React.Component {
       <div>
         <input onInput={this.change}/>
         <div>{this.state.name}</div>
-        <h2>22222111122222222222</h2>  
+        <h2>vvvbbbsss</h2>  
+        <h3>------------------------------------------</h3>
       </div>
     )
   }
