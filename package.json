@@ -1,8 +1,8 @@
 {
-  "name": "webpack-dll-plugin",
+  "name": "webpack-react",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:xianjiezh/webpack-dll-plugin.git",
+  "repository": "git@github.com:xianjiezh/webpack-react.git",
   "author": "xianjiezh <904292766@qq.com>",
   "license": "MIT",
   "scripts": {
