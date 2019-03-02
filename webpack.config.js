@@ -29,11 +29,13 @@ module.exports = {
       }
     ]
   },
-  devtool: false,
+  devtool: 'source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
     }),
-  ]
+    // 添加hot之后会自动引入这个插件
+    // new webpack.HotModuleReplacementPlugin
+  ],
 }

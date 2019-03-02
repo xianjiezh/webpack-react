@@ -3,28 +3,48 @@ import React from 'react'
 function log(target) {
   target.RUOK = true
 }
-
-@log
-class App extends React.Component {
-  state = {
-    name: ''    
-  }
+class Index extends React.Component {
   constructor() {
     super()
+  }
+  render() {
+    return (
+      <h2>11111111111111</h2>
+    )
+  }
+}
+
+class Input extends React.Component {
+  state = {
+    name: 'my name'
+  }
+  constructor(props) {
+    super(props)
     this.change = this.change.bind(this)
   }
   change(event) {
-    this.setState({
-      name: event.target.value
-    })
+    this.props.bindChange(event.target.value)
+  }
+  render() {
+    return <input onInput={this.change}/>
+  }
+}
+
+@log
+class App extends React.Component {
+  constructor() {
+    super()
+    this
+  }
+  handleChange(value) {
+    console.log(value)
   }
   render() {
     return (
       <div>
-        <input onInput={this.change}/>
-        <div>{this.state.name}</div>
         <h2>vvvbbbsss</h2>  
-        <h3>------------------------------------------</h3>
+        <Index/>
+        <Input bindChange={this.handleChange}/>
       </div>
     )
   }
