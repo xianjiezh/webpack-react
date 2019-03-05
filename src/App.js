@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './index.css'
 function log(target) {
   target.RUOK = true
 }
@@ -34,7 +34,6 @@ class Input extends React.Component {
 class App extends React.Component {
   constructor() {
     super()
-    this
   }
   handleChange(value) {
     console.log(value)
