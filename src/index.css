@@ -2,3 +2,7 @@
 body {
   background-color: #ddd;
 }
+div {
+  border: 1px solid red;
+  transform: translateX(-50%);
+}

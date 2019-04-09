@@ -1,24 +1,23 @@
 const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
-console.log('path', path.join(__dirname, './webpack.config.js'))
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'boundle[hash].js',
+    filename: 'js/boundle[hash].js',
   },
   devServer: {
-    port: 8080,
+    port: 8081,
     hot: true,
   },
   mode: 'production',
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
@@ -28,21 +27,31 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader'],
+        use: [{
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            publicPath: '../'
+          }
+        }, 'css-loader', 'postcss-loader'],
       }
     ]
   },
   devtool: 'source-map',
   plugins: [
+    new OptimizeCSSAssetsPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[hash].css',
+      chunkFilename: '[id].[hash].css'
+    }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
       minify: {
-        removeComments: true,    //移除HTML中的注释
-        collapseWhitespace: true,    //删除空白符与换行符
-     }
+        removeComments: true, //移除HTML中的注释
+        collapseWhitespace: true, //删除空白符与换行符
+      }
     }),
-    // 添加hot之后会自动引入这个插件
-    // new webpack.HotModuleReplacementPlugin
+    new webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin()
   ],
 }
