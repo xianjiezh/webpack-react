@@ -4,5 +4,5 @@ body {
 }
 div {
   border: 1px solid red;
-  transform: translateX(-50%);
+  transform: translateY(50%);
 }
